@@ -11,6 +11,7 @@ pytest-cov = "*"
 pandas = "*"
 numpy = "*"
 luigi = "*"
+schema = "*"
 
 [requires]
 python_version = "3.7"
