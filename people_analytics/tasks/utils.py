@@ -1,5 +1,6 @@
 from luigi import LocalTarget
 
+
 class Requirement:
     def __init__(self, task_class, **params):
         self.task = task_class
@@ -47,13 +48,14 @@ class Requires:
             if isinstance(v, Requirement)
         }
 
+
 class TargetOutput:
     def __init__(
-            self,
-            file_pattern="{task.__class__.__name__}",
-            ext=".txt",
-            target_class=LocalTarget,
-            **target_kwargs
+        self,
+        file_pattern="{task.__class__.__name__}",
+        ext=".txt",
+        target_class=LocalTarget,
+        **target_kwargs
     ):
         self.file_pattern = file_pattern
         self.ext = ext

@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 pytest = "*"
 pytest-cov = "*"
+flake8 = "*"
+black = "*"
 
 [packages]
 pandas = "*"
@@ -17,3 +19,6 @@ python-dateutil = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

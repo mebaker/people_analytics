@@ -1,12 +1,12 @@
 from luigi import Task, LocalTarget, format
 import pandas as pd
 
-from ..models.employee import Employee
+from ..models.position import Position
 
 
-class LoadEmployee(Task):
+class LoadPosition(Task):
 
-    file = "./data/employee.csv"
+    file = "./data/position.csv"
     target = str(file).replace(".csv", ".p")
 
     def output(self):
@@ -14,7 +14,7 @@ class LoadEmployee(Task):
 
     def run(self):
         data = pd.read_csv(self.file, na_filter=False).to_dict("records")
-        data = list(map(lambda x: Employee(x).__dict__, data))
+        data = list(map(lambda x: Position(x).__dict__, data))
         data = pd.DataFrame.from_dict(data)
         with self.output().temporary_path() as temp_output_path:
             print(temp_output_path)
