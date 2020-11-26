@@ -17,5 +17,4 @@ class LoadEmployeeData(Task):
         data = list(map(lambda x: EmployeeData(x).__dict__, data))
         data = pd.DataFrame.from_dict(data)
         with self.output().temporary_path() as temp_output_path:
-            print(temp_output_path)
             data.to_pickle(temp_output_path, compression=None)
