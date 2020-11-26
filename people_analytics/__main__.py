@@ -1,5 +1,9 @@
+from luigi import build
+from .tasks.clean_data import CleanData
 
 def main():
-    print('Hello World')
+    build([
+        CleanData()
+    ],local_scheduler=True)
 
 main()
