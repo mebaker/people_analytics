@@ -10,4 +10,4 @@ class EmployeeTest(TestCase):
         self.assertTrue(isinstance(data[0], Employee))
 
     def test_failed_init(self):
-        Employee({ 'id': 'failed' })
+        self.assertRaises(Exception, Employee, { 'id': 'failed' })
