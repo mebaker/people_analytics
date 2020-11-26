@@ -24,12 +24,13 @@ class Employee:
         employee['hiredDate'] = parse(employee['hiredDate']).date()
         employee['birthdate'] = parse(employee['birthdate']).date()
         employee['gender'] = Gender[employee['gender']]
+        employee['createdAt'] = parse(employee['createdAt']) if employee['createdAt'] else datetime.now()
         if (self.validate(employee)):
             self.id = employee['id']
             self.hiredDate = employee['hiredDate']
             self.birthdate = employee['birthdate']
             self.gender = employee['gender']
-            self.createdAt = employee.get('createdAt', datetime.now())
+            self.createdAt = employee['createdAt']
 
     def validate(self, employee):
         return schema.validate(employee)
