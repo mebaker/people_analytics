@@ -13,6 +13,7 @@ class EducationLevel(Enum):
     BACHELOR=5
     MASTERS=6
     PHD=7
+    UNKOWN=8
 
 schema = Schema({
     Optional('id'): Use(str),
