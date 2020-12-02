@@ -18,6 +18,8 @@ class OutputCleanData(Task):
 
     def run(self):
         data = pickle.load(self.input().get("data").open("r"))
-        data = pd.concat([data["employee"], data["position"]], axis=1)
+        data = pd.concat(
+            [data["employee"], data["position"], data["employeeData"]], axis=1
+        )
         with self.output().temporary_path() as temp_output_path:
             data.to_csv(temp_output_path, compression=None)

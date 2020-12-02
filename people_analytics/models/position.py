@@ -32,7 +32,7 @@ class ManagementLevel(Enum):
 schema = Schema(
     {
         "id": Use(str),
-        "position_id": Use(str),
+        "employeeId": Use(str),
         "position_start": date,
         "job_profile": str,
         "business_title": str,
@@ -57,7 +57,7 @@ class Position:
         )
         if self.validate(position):
             self.id = position["id"]
-            self.position_id = position["position_id"]
+            self.employeeId = position["employeeId"]
             self.position_start = position["position_start"]
             self.business_title = position["business_title"]
             self.management_level = position["management_level"]
