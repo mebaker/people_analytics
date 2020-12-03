@@ -34,18 +34,18 @@ schema = Schema(
 
 
 def get_generation(birthdate: date):
-    year = birthdate.year.__int__()
-    if year >= 1928 & year <= 1945:
+    year = birthdate.year
+    if year <= 1928 & year <= 1945:
         return Generation.SILENT
-    if year >= 1946 & year <= 1964:
+    if year <= 1946 & year <= 1964:
         return Generation.BABY_BOOMER
-    if year >= 1965 & year <= 1980:
+    if year <= 1965 & year <= 1980:
         return Generation.GEN_X
-    if year >= 1981 & year <= 1995:
+    if year <= 1981 & year <= 1995:
         return Generation.MILLENNIAL
-    if year >= 1996 & year <= 2012:
+    if year <= 1996 & year <= 2012:
         return Generation.GEN_Z
-    if year <= 2013:
+    if year >= 2013:
         return Generation.GEN_ALPHA
     return Generation.UNKNOWN
 
