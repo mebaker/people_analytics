@@ -18,6 +18,6 @@ class LoadTerm(Task):
         data = list(map(lambda x: Term(x).__dict__, data))
         data = pd.DataFrame.from_dict(data)
         data.set_index("employee_id", inplace=True)
-        data.drop(["createdAt"], axis=1, inplace=True)
+        data.drop(["created_at"], axis=1, inplace=True)
         with self.output().temporary_path() as temp_output_path:
             data.to_pickle(temp_output_path, compression=None)

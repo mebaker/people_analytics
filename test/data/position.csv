@@ -1,4 +1,4 @@
-position_id,employeeId,position_start,job_profile,business_title,management_level,job_function,business_unit,parent_department,department_name,department_id,manager_id,site,createdAt
+position_id,employeeId,position_start,job_profile,business_title,management_level,job_function,business_unit,parent_department,department_name,department_id,manager_id,site,created_at
 310001,n0000001,01-01-2000,Business Analyst,Market Analyst,Associate,Strategy,STR,Market Strategy,Market Analytics,13574,n0000004,USA-Boston,01-01-2003
 310002,n0000002,01-01-2005,Senior Business Analyst,Senior People Analytics Analyst,Senior,People,PPL,People COEs,People Analytics,12345,n0000003,USA-Boston,01-01-2003
 310003,n0000003,01-01-2000,Head of Sales,Head of America Sales,Senior_Manager,Sales,SLS,America Sales,America Sales Management,19847,n0000002,USA-Settle,

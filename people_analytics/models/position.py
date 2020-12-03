@@ -44,7 +44,7 @@ schema = Schema(
         "site": str,
         "department_id": Use(str),
         "manager_id": Use(str),
-        Optional("createdAt"): date,
+        Optional("created_at"): date,
     }
 )
 
@@ -53,9 +53,9 @@ class Position:
     def __init__(self, position):
         position["position_start"] = parse(position["position_start"]).date()
         position["management_level"] = ManagementLevel[position["management_level"]]
-        position["createdAt"] = (
-            parse(position["createdAt"])
-            if position["createdAt"]
+        position["created_at"] = (
+            parse(position["created_at"])
+            if position["created_at"]
             else datetime.now().date()
         )
         if self.validate(position):
@@ -70,7 +70,7 @@ class Position:
             self.department_name = position["department_name"]
             self.department_id = position["department_id"]
             self.manager_id = position["manager_id"]
-            self.createdAt = position["createdAt"]
+            self.created_at = position["created_at"]
             self.site = position["site"]
 
     def validate(self, position):

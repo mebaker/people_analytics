@@ -22,16 +22,16 @@ schema = Schema(
         "employeeId": Use(str),
         "recentHiredDate": datetime,
         "educationLevel": EducationLevel,
-        Optional("createdAt"): date,
+        Optional("created_at"): date,
     }
 )
 
 
 class EmployeeData:
     def __init__(self, employeeData):
-        employeeData["createdAt"] = (
-            parse(employeeData["createdAt"])
-            if employeeData["createdAt"]
+        employeeData["created_at"] = (
+            parse(employeeData["created_at"])
+            if employeeData["created_at"]
             else datetime.now().date()
         )
         employeeData["recentHiredDate"] = parse(employeeData["recentHiredDate"]).date()
@@ -40,7 +40,7 @@ class EmployeeData:
             self.id = employeeData["id"] or uuid4()
             self.employeeId = employeeData["employeeId"]
             self.recentHiredDate = employeeData["recentHiredDate"]
-            self.createdAt = employeeData["createdAt"]
+            self.created_at = employeeData["created_at"]
 
     def validate(self, employeeData):
         return schema.validate(employeeData)
