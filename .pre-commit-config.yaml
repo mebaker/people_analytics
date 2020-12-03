@@ -1,0 +1,25 @@
+repos:
+  - repo: local
+    hooks:
+      - id: isort
+        stages: [ commit ]
+        name: isort
+        entry: pipenv run isort -rc
+        language: system
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: no-commit-to-branch
+        args: ['--branch', 'master']
+  - repo: https://github.com/psf/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+        files: ^src/
+  - repo: https://github.com/jorisroovers/gitlint
+    rev:  v0.12.0
+    hooks:
+      - id: gitlint
