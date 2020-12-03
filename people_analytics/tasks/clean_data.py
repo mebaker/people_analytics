@@ -23,13 +23,7 @@ class CleanData(Task):
         employee = pd.read_pickle(self.input().get("employee").open("r"))
         employeeData = pd.read_pickle(self.input().get("employeeData").open("r"))
         position = pd.read_pickle(self.input().get("position").open("r"))
+        data = pd.concat([employee, employeeData, position], axis=1)
         with self.output().temporary_path() as temp_output_path:
             with open(temp_output_path, "wb") as out:
-                pickle.dump(
-                    {
-                        "employee": employee,
-                        "employeeData": employeeData,
-                        "position": position,
-                    },
-                    out,
-                )
+                pickle.dump(data, out)
