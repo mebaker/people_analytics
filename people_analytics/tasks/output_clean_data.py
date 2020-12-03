@@ -19,6 +19,9 @@ class OutputCleanData(Task):
     def run(self):
         data = pickle.load(self.input().get("data").open("r"))
         data["gender"] = data["gender"].apply(lambda gender: gender.name)
+        data["generation"] = data["generation"].apply(
+            lambda generation: generation.name
+        )
         data["management_level"] = data["management_level"].apply(
             lambda management_level: management_level.name
         )
