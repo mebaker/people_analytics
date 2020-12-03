@@ -24,7 +24,7 @@ class Generation(Enum):
 schema = Schema(
     {
         "id": Use(str),
-        "hiredDate": date,
+        "hired_date": date,
         "birthdate": date,
         "gender": Gender,
         "generation": Generation,
@@ -52,7 +52,7 @@ def get_generation(birthdate: date):
 
 class Employee:
     def __init__(self, employee):
-        employee["hiredDate"] = parse(employee["hiredDate"]).date()
+        employee["hired_date"] = parse(employee["hired_date"]).date()
         employee["birthdate"] = parse(employee["birthdate"]).date()
         employee["gender"] = Gender[employee["gender"]]
         employee["generation"] = get_generation(employee["birthdate"])
@@ -61,7 +61,7 @@ class Employee:
         )
         if self.validate(employee):
             self.id = employee["id"]
-            self.hiredDate = employee["hiredDate"]
+            self.hired_date = employee["hired_date"]
             self.birthdate = employee["birthdate"]
             self.gender = employee["gender"]
             self.created_at = employee["created_at"]

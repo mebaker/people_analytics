@@ -14,7 +14,7 @@ class CleanData(Task):
 
     requires = Requires()
     employee = Requirement(LoadEmployee)
-    employeeData = Requirement(LoadEmployeeData)
+    employee_data = Requirement(LoadEmployeeData)
     position = Requirement(LoadPosition)
     term = Requirement(LoadTerm)
 
@@ -23,10 +23,10 @@ class CleanData(Task):
 
     def run(self):
         employee = pd.read_pickle(self.input().get("employee").open("r"))
-        employeeData = pd.read_pickle(self.input().get("employeeData").open("r"))
+        employee_data = pd.read_pickle(self.input().get("employee_data").open("r"))
         position = pd.read_pickle(self.input().get("position").open("r"))
         term = pd.read_pickle(self.input().get("term").open("r"))
-        data = pd.concat([employee, employeeData, position, term], axis=1)
+        data = pd.concat([employee, employee_data, position, term], axis=1)
         with self.output().temporary_path() as temp_output_path:
             with open(temp_output_path, "wb") as out:
                 pickle.dump(data, out)

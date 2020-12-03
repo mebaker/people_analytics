@@ -1,4 +1,4 @@
-id,employeeId,recentHiredDate,educationLevel,created_at
+id,employeeId,recent_hired_date,educationLevel,created_at
 ,n0000001,01-01-2000,HIGH_SCHOOL,
 ,n0000002,01-01-2000,HIGH_SCHOOL,
 ,n0000003,01-01-2000,HIGH_SCHOOL,01-01-2000

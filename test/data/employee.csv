@@ -1,4 +1,4 @@
-id,hiredDate,birthdate,gender,created_at
+id,hired_date,birthdate,gender,created_at
 n0000001,01-01-2000,01-01-1980,MALE
 n0000002,01-01-2001,01-01-1980,MALE
 n0000003,01-01-2002,01-01-1980,FEMALE
