@@ -47,28 +47,3 @@ class Requires:
             for k, v in task.__class__.__dict__.items()
             if isinstance(v, Requirement)
         }
-
-
-class TargetOutput:
-    def __init__(
-        self,
-        file_pattern="{task.__class__.__name__}",
-        ext=".txt",
-        target_class=LocalTarget,
-        **target_kwargs
-    ):
-        self.file_pattern = file_pattern
-        self.ext = ext
-        self.target_class = target_class
-        self.target_kwargs = target_kwargs
-
-    def __get__(self, task, cls):
-        if task is None:
-            return self
-        return lambda: self(task)
-
-    def __call__(self, task):
-        filename = self.file_pattern.format(
-            task=task, ext=self.ext, **self.target_kwargs
-        )
-        return self.target_class(filename, **self.target_kwargs)
