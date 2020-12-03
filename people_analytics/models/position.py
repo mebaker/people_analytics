@@ -41,6 +41,7 @@ schema = Schema(
         "business_unit": str,
         "parent_department": str,
         "department_name": str,
+        "site": str,
         "department_id": Use(str),
         "manager_id": Use(str),
         Optional("createdAt"): date,
@@ -70,6 +71,7 @@ class Position:
             self.department_id = position["department_id"]
             self.manager_id = position["manager_id"]
             self.createdAt = position["createdAt"]
+            self.site = position["site"]
 
     def validate(self, employee):
         return schema.validate(employee)
