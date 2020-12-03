@@ -73,5 +73,5 @@ class Position:
             self.createdAt = position["createdAt"]
             self.site = position["site"]
 
-    def validate(self, employee):
-        return schema.validate(employee)
+    def validate(self, position):
+        return schema.validate(position)
