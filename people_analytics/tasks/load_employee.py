@@ -16,6 +16,7 @@ class LoadEmployee(Task):
         data = pd.read_csv(self.file, na_filter=False).to_dict("records")
         data = list(map(lambda x: Employee(x).__dict__, data))
         data = pd.DataFrame.from_dict(data)
-        data = data.set_index("id")
+        data.set_index("id", inplace=True)
+        data.drop(["createdAt"], axis=1, inplace=True)
         with self.output().temporary_path() as temp_output_path:
             data.to_pickle(temp_output_path, compression=None)

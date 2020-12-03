@@ -19,5 +19,6 @@ class LoadPosition(Task):
         data = pd.DataFrame.from_dict(data)
         data = data[data["createdAt"] <= self.report_date]
         data.set_index("employeeId", inplace=True)
+        data.drop(["createdAt"], axis=1, inplace=True)
         with self.output().temporary_path() as temp_output_path:
             data.to_pickle(temp_output_path, compression=None)

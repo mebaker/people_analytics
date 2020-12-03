@@ -21,5 +21,9 @@ class OutputCleanData(Task):
         data = pd.concat(
             [data["employee"], data["position"], data["employeeData"]], axis=1
         )
+        data["gender"] = data["gender"].apply(lambda gender: gender.name)
+        data["management_level"] = data["management_level"].apply(
+            lambda management_level: management_level.name
+        )
         with self.output().temporary_path() as temp_output_path:
-            data.to_csv(temp_output_path, compression=None)
+            data.to_csv(temp_output_path, compression=None, index_label="employee_id")

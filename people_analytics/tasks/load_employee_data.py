@@ -20,6 +20,8 @@ class LoadEmployeeData(Task):
         data = data[data["createdAt"] <= self.report_date]
         data.sort_values(by=["createdAt"], inplace=True)
         data.drop_duplicates(subset=["employeeId"], keep="last", inplace=True)
+        data.drop(["id"], axis=1, inplace=True)
+        data.drop(["createdAt"], axis=1, inplace=True)
         data.set_index("employeeId", inplace=True)
         with self.output().temporary_path() as temp_output_path:
             data.to_pickle(temp_output_path, compression=None)

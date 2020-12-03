@@ -1,7 +1,7 @@
 from enum import Enum
 from uuid import uuid4
 from schema import Schema, Use, Optional
-from datetime import datetime
+from datetime import datetime, date
 from dateutil.parser import parse
 
 
@@ -22,7 +22,7 @@ schema = Schema(
         "employeeId": Use(str),
         "recentHiredDate": datetime,
         "educationLevel": EducationLevel,
-        Optional("createdAt"): Use(datetime),
+        Optional("createdAt"): date,
     }
 )
 
@@ -32,7 +32,7 @@ class EmployeeData:
         employeeData["createdAt"] = (
             parse(employeeData["createdAt"])
             if employeeData["createdAt"]
-            else datetime.now()
+            else datetime.now().date()
         )
         employeeData["recentHiredDate"] = parse(employeeData["recentHiredDate"]).date()
         employeeData["educationLevel"] = EducationLevel[employeeData["educationLevel"]]

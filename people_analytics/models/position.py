@@ -31,7 +31,7 @@ class ManagementLevel(Enum):
 
 schema = Schema(
     {
-        "id": Use(str),
+        "position_id": Use(str),
         "employeeId": Use(str),
         "position_start": date,
         "job_profile": str,
@@ -43,7 +43,7 @@ schema = Schema(
         "department_name": str,
         "department_id": Use(str),
         "manager_id": Use(str),
-        Optional("createdAt"): datetime,
+        Optional("createdAt"): date,
     }
 )
 
@@ -53,10 +53,12 @@ class Position:
         position["position_start"] = parse(position["position_start"]).date()
         position["management_level"] = ManagementLevel[position["management_level"]]
         position["createdAt"] = (
-            parse(position["createdAt"]) if position["createdAt"] else datetime.now()
+            parse(position["createdAt"])
+            if position["createdAt"]
+            else datetime.now().date()
         )
         if self.validate(position):
-            self.id = position["id"]
+            self.position_id = position["position_id"]
             self.employeeId = position["employeeId"]
             self.position_start = position["position_start"]
             self.business_title = position["business_title"]
