@@ -28,7 +28,7 @@ schema = Schema(
         "birthdate": date,
         "gender": Gender,
         "generation": Generation,
-        Optional("created_at"): datetime,
+        Optional("created_at"): date,
     }
 )
 
@@ -57,7 +57,9 @@ class Employee:
         employee["gender"] = Gender[employee["gender"]]
         employee["generation"] = get_generation(employee["birthdate"])
         employee["created_at"] = (
-            parse(employee["created_at"]) if employee["created_at"] else datetime.now()
+            parse(employee["created_at"])
+            if employee["created_at"]
+            else datetime.now().date()
         )
         if self.validate(employee):
             self.id = employee["id"]
