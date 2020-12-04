@@ -4,7 +4,7 @@ from dateutil.parser import parse
 
 schema = Schema(
     {
-        "comp_id": Use(str),
+        "employee_id": Use(str),
         "annual_comp_local": Use(float),
         "annual_comp_local_curr": str,
         "annual_comp_usd": Use(float),
@@ -33,7 +33,7 @@ class Comp:
             parse(comp["created_at"]) if comp["created_at"] else datetime.now().date()
         )
         if self.validate(comp):
-            self.comp_id = comp["comp_id"]
+            self.employee_id = comp["employee_id"]
             self.annual_comp_local = comp["annual_comp_local"]
             self.annual_comp_local_curr = comp["annual_comp_local_curr"]
             self.annual_comp_usd = comp["annual_comp_usd"]

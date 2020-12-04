@@ -6,6 +6,7 @@ from .load_employee import LoadEmployee
 from .load_employee_data import LoadEmployeeData
 from .load_position import LoadPosition
 from .load_term import LoadTerm
+from .load_comp import LoadComp
 
 
 class CleanData(Task):
@@ -17,6 +18,7 @@ class CleanData(Task):
     employee_data = Requirement(LoadEmployeeData)
     position = Requirement(LoadPosition)
     term = Requirement(LoadTerm)
+    comp = Requirement(LoadComp)
 
     def output(self):
         return LocalTarget(self.target, format=format.Nop)
@@ -26,7 +28,8 @@ class CleanData(Task):
         employee_data = pd.read_pickle(self.input().get("employee_data").open("r"))
         position = pd.read_pickle(self.input().get("position").open("r"))
         term = pd.read_pickle(self.input().get("term").open("r"))
-        data = pd.concat([employee, employee_data, position, term], axis=1)
+        comp = pd.read_pickle(self.input().get("comp").open("r"))
+        data = pd.concat([employee, employee_data, position, term, comp], axis=1)
         with self.output().temporary_path() as temp_output_path:
             with open(temp_output_path, "wb") as out:
                 pickle.dump(data, out)
