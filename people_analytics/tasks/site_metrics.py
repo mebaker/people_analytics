@@ -4,6 +4,7 @@ from luigi import Task, LocalTarget, format
 from .utils import Requirement, Requires
 from .clean_data import CleanData
 from ..models.employee import Gender
+from ..metrics import cal_headcount
 
 
 class SiteMetrics(Task):
@@ -16,9 +17,9 @@ class SiteMetrics(Task):
     def site_analysis(self, site):
         data: pd.DataFrame = self.data
         site_data = data[data["site"] == site]
-        headcount = len(site_data)
-        female = len(site_data[site_data["gender"] == Gender.FEMALE])
-        male = len(site_data[site_data["gender"] == Gender.MALE])
+        headcount = cal_headcount(site_data)
+        female = cal_headcount(site_data[site_data["gender"] == Gender.FEMALE])
+        male = cal_headcount(site_data[site_data["gender"] == Gender.MALE])
         return {
             "site": site,
             "headcount": headcount,
