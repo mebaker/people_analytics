@@ -1,13 +1,12 @@
 import pickle
-from luigi import Task, LocalTarget, format
+from luigi import Task, LocalTarget, format, Parameter
 from .utils import Requirement, Requires
 from .clean_data import CleanData
-
-import pandas as pd
+from datetime import datetime
 
 
 class OutputCleanData(Task):
-
+    report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
     target = "./data/output/cleaned-data.csv"
 
     requires = Requires()

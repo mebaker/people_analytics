@@ -1,5 +1,5 @@
 import pickle
-from luigi import Task, LocalTarget, format
+from luigi import Task, LocalTarget, format, Parameter
 import pandas as pd
 from .utils import Requirement, Requires
 from .load_employee import LoadEmployee
@@ -7,12 +7,13 @@ from .load_employee_data import LoadEmployeeData
 from .load_position import LoadPosition
 from .load_term import LoadTerm
 from .load_comp import LoadComp
+from datetime import datetime
 
 from ..models.position import ManagementLevel
 
 
 class CleanData(Task):
-
+    report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
     target = "./data/data.p"
 
     requires = Requires()

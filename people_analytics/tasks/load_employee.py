@@ -1,11 +1,12 @@
-from luigi import Task, LocalTarget, format
+from luigi import Task, LocalTarget, format, Parameter
 import pandas as pd
+from datetime import datetime
 
 from ..models.employee import Employee
 
 
 class LoadEmployee(Task):
-
+    report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
     file = "./data/input/employee.csv"
     target = str(file).replace("/input", "").replace(".csv", ".p")
 

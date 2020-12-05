@@ -1,6 +1,7 @@
 import pickle
 import pandas as pd
-from luigi import Task, LocalTarget, format
+from luigi import Task, LocalTarget, format, Parameter
+from datetime import datetime
 from .utils import Requirement, Requires
 from .clean_data import CleanData
 from ..models.employee import Gender
@@ -9,7 +10,7 @@ from ..models.position import ManagementLevel
 
 
 class SiteMetrics(Task):
-
+    report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
     target = "./data/output/site_analytics.csv"
 
     requires = Requires()
