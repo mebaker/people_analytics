@@ -32,7 +32,10 @@ class CleanData(Task):
         term = pd.read_pickle(self.input().get("term").open("r"))
         comp = pd.read_pickle(self.input().get("comp").open("r"))
         data = pd.concat([employee, employee_data, position, term, comp], axis=1)
-        data["is_manager"] = data["management_level"] < int(ManagementLevel.Principal)
+        data["is_manager"] = (
+            data["management_level"].apply(lambda ml: ml.value)
+            < ManagementLevel.Principal.value
+        )
         with self.output().temporary_path() as temp_output_path:
             with open(temp_output_path, "wb") as out:
                 pickle.dump(data, out)

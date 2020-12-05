@@ -38,6 +38,7 @@ class Comp:
             self.annual_comp_local_curr = comp["annual_comp_local_curr"]
             self.annual_comp_usd = comp["annual_comp_usd"]
             self.total_incentive_local = comp["total_incentive_local"]
+            self.total_incentive_usd = comp["total_incentive_usd"]
             self.sale_effective_date = comp["sale_effective_date"]
             self.incentive_effective_date = comp["incentive_effective_date"]
             self.fte = comp["fte"]
