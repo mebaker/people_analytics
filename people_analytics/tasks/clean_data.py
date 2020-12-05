@@ -8,6 +8,8 @@ from .load_position import LoadPosition
 from .load_term import LoadTerm
 from .load_comp import LoadComp
 
+from ..models.position import ManagementLevel
+
 
 class CleanData(Task):
 
@@ -30,6 +32,7 @@ class CleanData(Task):
         term = pd.read_pickle(self.input().get("term").open("r"))
         comp = pd.read_pickle(self.input().get("comp").open("r"))
         data = pd.concat([employee, employee_data, position, term, comp], axis=1)
+        data["is_manager"] = data["management_level"] < int(ManagementLevel.Principal)
         with self.output().temporary_path() as temp_output_path:
             with open(temp_output_path, "wb") as out:
                 pickle.dump(data, out)

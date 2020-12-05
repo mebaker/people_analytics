@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum
 from schema import Schema, Use, Optional
 from datetime import datetime, date
 from dateutil.parser import parse
 
 
-class ManagementLevel(Enum):
+class ManagementLevel(IntEnum):
     CEO = 1
     EVP = 2
     DVP_CVP = 3
@@ -12,11 +12,11 @@ class ManagementLevel(Enum):
     VP = 5
     Senior_Director = 6
     Director = 7
-    Fellow = 8
-    Senior_Manager = 9
-    Manager = 10
-    Principal = 11
-    Supervisor = 12
+    Senior_Manager = 8
+    Manager = 9
+    Fellow = 10
+    Supervisor = 11
+    Principal = 12
     Senior = 13
     Specialist = 14
     Support_5 = 15
