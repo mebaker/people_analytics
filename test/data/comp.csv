@@ -1,0 +1,2 @@
+employee_id,annual_comp_local,annual_comp_local_curr,annual_comp_usd,total_incentive_local,total_incentive_usd,sale_effective_date,incentive_effective_date,fte,comp_ratio,salary_range_low,salary_range_midpoint,salary_range_high,grade,created_at
+n0000001,test,test,test,test,100000,01-01-2000,01-01-2020,test,test,10000,200000,300000,18,01-01-2020
