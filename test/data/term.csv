@@ -1,3 +1,3 @@
 employee_id,termination_date,last_date_worked,term_type,term_reason,created_at
-n0000001,01-01-2020,01-01-2020,term_type,term_reason,
-n0000002,01-01-2018,01-01-2019,term_type,term_reason,2018-01-01
+n0000001,12-01-2020,12-01-2020,Voluntary,Personal,
+n0000002,12-31-2020,12-20-2020,Involuntary,RIF,2018-01-01
