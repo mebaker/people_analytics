@@ -7,8 +7,8 @@ from ..models.employee_data import EmployeeData
 
 class LoadEmployeeData(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
-    file = "./data/employee_data.csv"
-    target = str(file).replace(".csv", ".p")
+    file = "./data/input/employee_data.csv"
+    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
         return LocalTarget(self.target, format=format.Nop)

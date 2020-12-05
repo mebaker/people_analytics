@@ -7,8 +7,8 @@ from ..models.position import Position
 
 class LoadPosition(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
-    file = "./data/position.csv"
-    target = str(file).replace(".csv", ".p")
+    file = "./data/input/position.csv"
+    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
         return LocalTarget(self.target, format=format.Nop)

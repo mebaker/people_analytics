@@ -10,7 +10,7 @@ from ..models.position import ManagementLevel
 
 class SiteMetrics(Task):
 
-    target = "./data/site_analytics.csv"
+    target = "./data/output/site_analytics.csv"
 
     requires = Requires()
     data = Requirement(CleanData)
@@ -55,7 +55,7 @@ class SiteMetrics(Task):
     def run(self):
         self.data = pickle.load(self.input().get("data").open("r"))
         sites = self.data["site"].unique()
-        site_data = self.site_analysis(sites)
-        site_data = pd.DataFrame.from_dict(site_data)
+        site_data = pd.DataFrame.from_dict(self.site_analysis(sites))
+        site_data["level"] = site_data["level"].apply(lambda ml: ml.name)
         with self.output().temporary_path() as temp_output_path:
             site_data.to_csv(temp_output_path, compression=None, index_label="site")

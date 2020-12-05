@@ -6,8 +6,8 @@ from ..models.employee import Employee
 
 class LoadEmployee(Task):
 
-    file = "./data/employee.csv"
-    target = str(file).replace(".csv", ".p")
+    file = "./data/input/employee.csv"
+    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
         return LocalTarget(self.target, format=format.Nop)

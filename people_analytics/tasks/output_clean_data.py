@@ -8,7 +8,7 @@ import pandas as pd
 
 class OutputCleanData(Task):
 
-    target = "./data/cleaned-data.csv"
+    target = "./data/output/cleaned-data.csv"
 
     requires = Requires()
     data = Requirement(CleanData)

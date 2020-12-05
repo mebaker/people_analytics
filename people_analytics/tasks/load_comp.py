@@ -7,8 +7,8 @@ from ..models.comp import Comp
 
 class LoadComp(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
-    file = "./data/comp.csv"
-    target = str(file).replace(".csv", ".p")
+    file = "./data/input/comp.csv"
+    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
         return LocalTarget(self.target, format=format.Nop)

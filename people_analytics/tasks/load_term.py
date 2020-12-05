@@ -7,8 +7,8 @@ from ..models.term import Term
 
 class LoadTerm(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
-    file = "./data/term.csv"
-    target = str(file).replace(".csv", ".p")
+    file = "./data/input/term.csv"
+    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
         return LocalTarget(self.target, format=format.Nop)
