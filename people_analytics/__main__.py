@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime
 from .tasks.output_clean_data import OutputCleanData
 from .tasks.site_metrics import SiteMetrics
+import shutil
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--date", default=datetime.now().strftime("%Y-%m-%d"))
@@ -15,6 +16,7 @@ def main():
         [OutputCleanData(report_date=date), SiteMetrics(report_date=date)],
         local_scheduler=True,
     )
+    shutil.rmtree("./data/temp")
 
 
 main()

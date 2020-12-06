@@ -28,11 +28,22 @@ class CleanData(Task):
 
     def run(self):
         employee = pd.read_pickle(self.input().get("employee").open("r"))
+        employee_ids = list(employee.index)
+
         employee_data = pd.read_pickle(self.input().get("employee_data").open("r"))
         position = pd.read_pickle(self.input().get("position").open("r"))
         term = pd.read_pickle(self.input().get("term").open("r"))
         comp = pd.read_pickle(self.input().get("comp").open("r"))
+
+        employee_data = employee_data[employee_data.index.isin(employee_ids)]
+        position = position[position.index.isin(employee_ids)]
+        term = term[term.index.isin(employee_ids)]
+        comp = comp[comp.index.isin(employee_ids)]
+
         data = pd.concat([employee, employee_data, position, term, comp], axis=1)
+
+        print(data["management_level"])
+
         data["is_manager"] = (
             data["management_level"].apply(lambda ml: ml.value)
             < ManagementLevel.Principal.value
