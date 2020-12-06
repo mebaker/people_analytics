@@ -33,20 +33,21 @@ schema = Schema(
 
 
 def get_generation(birthdate: date):
+    generation = Generation.UNKNOWN
     year = birthdate.year
     if year > 2013:
-        return Generation.GEN_ALPHA
-    if year > 1996:
-        return Generation.GEN_Z
-    if year > 1981:
-        return Generation.MILLENNIAL
-    if year > 1965:
-        return Generation.GEN_X
-    if year > 1946:
-        return Generation.BABY_BOOMER
-    if year > 1928:
-        return Generation.SILENT
-    return Generation.UNKNOWN
+        generation = Generation.GEN_ALPHA
+    elif year > 1996:
+        generation = Generation.GEN_Z
+    elif year > 1981:
+        generation = Generation.MILLENNIAL
+    elif year > 1965:
+        generation = Generation.GEN_X
+    elif year > 1946:
+        generation = Generation.BABY_BOOMER
+    elif year > 1928:
+        generation = Generation.SILENT
+    return generation
 
 
 class Employee:
