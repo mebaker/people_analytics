@@ -8,10 +8,14 @@ from ..models.term import Term
 class LoadTerm(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
     file = "./data/input/term.csv"
-    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
-        return LocalTarget(self.target, format=format.Nop)
+        target = (
+            str(self.file)
+            .replace("input", "temp/{}".format(self.report_date))
+            .replace(".csv", ".p")
+        )
+        return LocalTarget(target, format=format.Nop)
 
     def run(self):
         data = pd.read_csv(self.file, na_filter=False).to_dict("records")

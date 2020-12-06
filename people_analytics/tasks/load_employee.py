@@ -6,12 +6,16 @@ from ..models.employee import Employee
 
 
 class LoadEmployee(Task):
-    report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
+    report_date = Parameter()
     file = "./data/input/employee.csv"
-    target = str(file).replace("/input", "").replace(".csv", ".p")
 
     def output(self):
-        return LocalTarget(self.target, format=format.Nop)
+        target = (
+            str(self.file)
+            .replace("input", "temp/{}".format(self.report_date))
+            .replace(".csv", ".p")
+        )
+        return LocalTarget(target, format=format.Nop)
 
     def run(self):
         data = pd.read_csv(self.file, na_filter=False).to_dict("records")

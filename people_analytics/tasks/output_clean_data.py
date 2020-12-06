@@ -7,13 +7,13 @@ from datetime import datetime
 
 class OutputCleanData(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
-    target = "./data/output/cleaned-data.csv"
 
     requires = Requires()
     data = Requirement(CleanData)
 
     def output(self):
-        return LocalTarget(self.target, format=format.Nop)
+        target = "./data/output/{}/cleaned-data.csv".format(self.report_date)
+        return LocalTarget(target, format=format.Nop)
 
     def run(self):
         data = pickle.load(self.input().get("data").open("r"))

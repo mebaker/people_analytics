@@ -14,7 +14,6 @@ from ..models.position import ManagementLevel
 
 class CleanData(Task):
     report_date = Parameter(default=datetime.now().strftime("%m/%d/%Y"))
-    target = "./data/data.p"
 
     requires = Requires()
     employee = Requirement(LoadEmployee)
@@ -24,7 +23,8 @@ class CleanData(Task):
     comp = Requirement(LoadComp)
 
     def output(self):
-        return LocalTarget(self.target, format=format.Nop)
+        target = "./data/temp/{}/data.p".format(self.report_date)
+        return LocalTarget(target, format=format.Nop)
 
     def run(self):
         employee = pd.read_pickle(self.input().get("employee").open("r"))
