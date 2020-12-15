@@ -1,3 +1,4 @@
+import sys
 from luigi import build
 import argparse
 from datetime import datetime
@@ -9,9 +10,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--date", default=default)
 
 
-def main(*args):
-    if args:
-        args = parser.parse_args(*args)
+def main(args=[]):
+    if len(args) > 1:
+        args = parser.parse_args(args[1].split("="))
         date = str(args.date).replace("/", "-")
     else:
         date = default
@@ -21,4 +22,4 @@ def main(*args):
     )
 
 
-main()
+main(sys.argv)
