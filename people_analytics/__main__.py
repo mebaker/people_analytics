@@ -12,8 +12,12 @@ parser.add_argument("-d", "--date", default=default)
 
 def main(args=[]):
     if len(args) > 1:
-        args = parser.parse_args(args[1].split("="))
-        date = str(args.date).replace("/", "-")
+        args.pop(0)
+        args, unknown = parser.parse_known_args(args)
+        if args.date:
+            date = str(args.date).replace("/", "-")
+        else:
+            date = default
     else:
         date = default
     build(
