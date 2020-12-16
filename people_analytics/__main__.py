@@ -4,6 +4,7 @@ import argparse
 from datetime import datetime
 from .tasks.output_clean_data import OutputCleanData
 from .tasks.site_metrics import SiteMetrics
+from .tasks.turnover import Turnover
 
 default = datetime.now().strftime("%Y-%m-%d")
 parser = argparse.ArgumentParser()
@@ -21,7 +22,7 @@ def main(args=[]):
     else:
         date = default
     build(
-        [OutputCleanData(report_date=date), SiteMetrics(report_date=date)],
+        [OutputCleanData(report_date=date), SiteMetrics(report_date=date), Turnover(report_date=date)],
         local_scheduler=True,
     )
 
